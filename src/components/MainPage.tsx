@@ -1,4 +1,5 @@
-import { data } from '../data/daten';
+import { Link } from 'react-router-dom';
+// import { data } from '../data/daten';
 import { DataType } from '../types/DataType';
 
 type DataProps = {
@@ -9,7 +10,7 @@ export default function MainPage({ sendData, handlerBtn }: DataProps) {
   const handlerData = (id: number) => {
     const dataId = id;
     handlerBtn(dataId);
-    console.log(dataId);
+    // console.log(dataId);
     return id;
   };
   return (
@@ -39,12 +40,15 @@ export default function MainPage({ sendData, handlerBtn }: DataProps) {
                   <p className="py-3 ">{desc}</p>
                 )}
 
-                <button
+                <Link
+                  to={`/blogId/${id}`}
                   className="bg-blue-600 py-0 px-5 uppercase font-bold text-white my-20 lg:my-14"
                   onClick={() => handlerData(id)}
                 >
-                  <a href={`/blogId/${id}`}> Mehr erfahren</a>
-                </button>
+                  {/* <a href={`/blogId/${id}`}>
+                  </a> */}
+                  Mehr erfahren
+                </Link>
                 <div className="w-full ">
                   <div className="w-full  bg-gray-400 h-[2px]" />
                   <div className="dateTime first-letter:uppercase">
@@ -78,12 +82,15 @@ export default function MainPage({ sendData, handlerBtn }: DataProps) {
                   <p className="py-3 ">{desc}..</p>
                 )}
 
-                <button
+                <Link
+                  to={`/blogId/${id}`}
                   className="bg-blue-600 p-2 uppercase font-bold text-white  mb-5"
                   onClick={() => handlerData(id)}
                 >
-                  <a href={`/blogId/${id}`}> Mehr erfahren</a>
-                </button>
+                  {/* <a href={`/blogId/${id}`}>
+                    </a> */}
+                  Mehr erfahren
+                </Link>
                 <div className="w-full my-4 bg-gray-400 h-[2px]" />
                 <div className="dateTime first-letter:uppercase">
                   erstellt am:{' '}
