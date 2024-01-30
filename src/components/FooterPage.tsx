@@ -1,9 +1,9 @@
 export default function FooterPage() {
   return (
-    <div className="footer bg-blue-600 w-full flex justify-center items-center h-auto">
+    <div className="footer bg-blue-600 w-full flex justify-center items-center h-auto sm:mt-10">
       <div className="footer_body w-2/3 h-auto  flex flex-wrap gap-x-20 justify-center items-center">
         <div className="footer_body_address w-96 h-auto  text-white">
-          <h1 className="font-bold uppercase text-3xl mb-7 mt-10">
+          <h1 className="font-bold uppercase text-3xl mb-7 mt-10 sm:text-2xl ">
             Coding-school-blog
           </h1>
           <div className="adrress">

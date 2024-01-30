@@ -1,18 +1,27 @@
+import { data } from '../data/daten';
 import { DataType } from '../types/DataType';
 
 type DataProps = {
   sendData: DataType[];
+  handlerBtn: (id: number) => void;
 };
-export default function MainPage({ sendData }: DataProps) {
+export default function MainPage({ sendData, handlerBtn }: DataProps) {
+  const handlerData = (id: number) => {
+    const dataId = id;
+    handlerBtn(dataId);
+    console.log(dataId);
+    return id;
+  };
   return (
     <div>
       <div className="body grid grid-cols-3 xl:grid-cols-4 lg:grid-cols-4 lg:gap-4 md:grid-cols-1 max-w-full  flex-wrap gap-4  p-3 justify-center   mx-auto">
         {sendData.map((item: DataType) => {
           const { id, title, desc, date, image } = item;
-          console.log(id);
+          // console.log(id);
           return id === 1 ? (
             <div
               key={id}
+              data-id={id}
               className="box col-span-3 xl:col-span-4 lg:col-span-4 md:col-span-1 row-span-1 w-full h-auto bg-gray-300 mx-auto flex flex-wrap"
             >
               <img
@@ -30,8 +39,11 @@ export default function MainPage({ sendData }: DataProps) {
                   <p className="py-3 ">{desc}</p>
                 )}
 
-                <button className="bg-blue-600 py-0 px-5 uppercase font-bold text-white my-20 lg:my-14">
-                  Mehr erfahren
+                <button
+                  className="bg-blue-600 py-0 px-5 uppercase font-bold text-white my-20 lg:my-14"
+                  onClick={() => handlerData(id)}
+                >
+                  <a href={`/blogId/${id}`}> Mehr erfahren</a>
                 </button>
                 <div className="w-full ">
                   <div className="w-full  bg-gray-400 h-[2px]" />
@@ -45,6 +57,7 @@ export default function MainPage({ sendData }: DataProps) {
           ) : (
             <div
               key={id}
+              data-id={id}
               className="box col-span-1 xl:col-span-2 lg:col-span-2 md:col-span-1   h-auto bg-gray-300  flex flex-wrap"
             >
               <img src={image} alt="" className="w-full h-60 lg:h-56 md:h-72" />
@@ -65,8 +78,11 @@ export default function MainPage({ sendData }: DataProps) {
                   <p className="py-3 ">{desc}..</p>
                 )}
 
-                <button className="bg-blue-600 p-2 uppercase font-bold text-white  mb-5">
-                  Mehr erfahren
+                <button
+                  className="bg-blue-600 p-2 uppercase font-bold text-white  mb-5"
+                  onClick={() => handlerData(id)}
+                >
+                  <a href={`/blogId/${id}`}> Mehr erfahren</a>
                 </button>
                 <div className="w-full my-4 bg-gray-400 h-[2px]" />
                 <div className="dateTime first-letter:uppercase">
