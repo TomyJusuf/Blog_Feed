@@ -3,30 +3,22 @@ import Navbar from './Navbar';
 import { useParams, Link } from 'react-router-dom';
 import { data } from '../data/daten';
 import { DataType } from '../types/DataType';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function OneCard() {
   const { blog_id } = useParams<{ blog_id?: string }>();
-  const n = Number.parseInt(blog_id ?? '1'); // Use 0 as a default if blog_id is undefined
+  const n = Number.parseInt(blog_id ?? '0'); // Use 0 as a default if blog_id is undefined
 
   const [currentIndex, setCurrentIndex] = useState<number>(n);
-  console.log('current index:' + currentIndex);
 
+  let newIndex: number;
   const handleButtonClick = (increment: number) => {
-    console.log('current index (before):', currentIndex);
-    const newIndex = currentIndex + increment;
+    newIndex = currentIndex + increment;
     if (newIndex <= 0) {
       return false;
     } else {
-      console.log('data legnth:' + data.length);
-      console.log('newIndex:' + newIndex);
       setCurrentIndex((prevIndex) => prevIndex + increment);
     }
-
-    useEffect(() => {
-      console.log('useEffect called', newIndex);
-      window.history.replaceState({}, '', `/blogId/${newIndex}`);
-    }, [newIndex]);
   };
 
   const foundItem = data.find((item: DataType) => item.id === n);
@@ -61,7 +53,7 @@ export default function OneCard() {
                   </svg>
                 </span>{' '}
                 <Link
-                  to={`/blogId/${currentIndex}`}
+                  to={`/blogId/${currentIndex - 1}`}
                   className="  hidden"
                   onClick={() => handleButtonClick(-1)}
                 >
@@ -84,7 +76,7 @@ export default function OneCard() {
                   </svg>
                 </span>{' '}
                 <Link
-                  to={`/blogId/${currentIndex}`}
+                  to={`/blogId/${currentIndex - 1}`}
                   className="text-blue-600"
                   onClick={() => handleButtonClick(-1)}
                 >
@@ -119,7 +111,7 @@ export default function OneCard() {
             ) : (
               <div className="arrow_right w-56 flex items-center sm:text-[0.7rem] sm:w-44  sm:text-end">
                 <Link
-                  to={`/blogId/${currentIndex}`}
+                  to={`/blogId/${currentIndex + 1}`}
                   className="text-blue-600"
                   onClick={() => handleButtonClick(1)}
                 >

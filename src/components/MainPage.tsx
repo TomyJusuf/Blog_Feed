@@ -1,24 +1,17 @@
 import { Link } from 'react-router-dom';
-// import { data } from '../data/daten';
+
 import { DataType } from '../types/DataType';
 
 type DataProps = {
   sendData: DataType[];
-  handlerBtn: (id: number) => void;
 };
-export default function MainPage({ sendData, handlerBtn }: DataProps) {
-  const handlerData = (id: number) => {
-    const dataId = id;
-    handlerBtn(dataId);
-    // console.log(dataId);
-    return id;
-  };
+export default function MainPage({ sendData }: DataProps) {
   return (
     <div>
       <div className="body grid grid-cols-3 xl:grid-cols-4 lg:grid-cols-4 lg:gap-4 md:grid-cols-1 max-w-full  flex-wrap gap-4  p-3 justify-center   mx-auto">
         {sendData.map((item: DataType) => {
           const { id, title, desc, date, image } = item;
-          // console.log(id);
+
           return id === 1 ? (
             <div
               key={id}
@@ -42,13 +35,13 @@ export default function MainPage({ sendData, handlerBtn }: DataProps) {
 
                 <Link
                   to={`/blogId/${id}`}
-                  className="bg-blue-600 py-0 px-5 uppercase font-bold text-white my-20 lg:my-14"
-                  onClick={() => handlerData(id)}
+                  className="bg-blue-600  text-center  p-2  uppercase font-bold text-white my-20 lg:my-14"
                 >
-                  {/* <a href={`/blogId/${id}`}>
-                  </a> */}
                   Mehr erfahren
+                  {/* <a href={`/blogId/${id}`}>
+                    </a> */}
                 </Link>
+
                 <div className="w-full ">
                   <div className="w-full  bg-gray-400 h-[2px]" />
                   <div className="dateTime first-letter:uppercase">
@@ -85,7 +78,6 @@ export default function MainPage({ sendData, handlerBtn }: DataProps) {
                 <Link
                   to={`/blogId/${id}`}
                   className="bg-blue-600 p-2 uppercase font-bold text-white  mb-5"
-                  onClick={() => handlerData(id)}
                 >
                   {/* <a href={`/blogId/${id}`}>
                     </a> */}

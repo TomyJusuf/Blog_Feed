@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function Navbar() {
   return (
     <div>
@@ -13,7 +15,7 @@ export default function Navbar() {
           />
         </svg>
         <h1 className="text-4xl font-bold uppercase ">
-          <a href="/"> csaw blog</a>
+          <Link to={'/'}>CSAW blog</Link>
         </h1>
       </div>
     </div>

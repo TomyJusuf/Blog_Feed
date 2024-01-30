@@ -4,12 +4,11 @@ import App from './App.tsx';
 import './index.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import OneCard from './components/OneCard.tsx';
-import { data } from './data/daten.ts';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App data={data} />,
+    element: <App />,
   },
   {
     path: '/blogId/:blog_id',
@@ -19,7 +18,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    {/* <App /> */}
     <RouterProvider router={router} />
   </React.StrictMode>
 );
