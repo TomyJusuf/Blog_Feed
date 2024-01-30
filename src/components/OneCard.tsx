@@ -7,7 +7,9 @@ import { useState } from 'react';
 
 export default function OneCard() {
   const { blog_id } = useParams<{ blog_id?: string }>();
-  const n = Number.parseInt(blog_id ?? '0'); // Use 0 as a default if blog_id is undefined
+
+  // Use 0 as a default if blog_id is undefined
+  const n = Number.parseInt(blog_id ?? '0');
 
   const [currentIndex, setCurrentIndex] = useState<number>(n);
 
@@ -25,7 +27,19 @@ export default function OneCard() {
 
   if (!foundItem) {
     // Handle the case where the item is not found, e.g., redirect to an error page or show a message
-    return <div>Item not found!</div>;
+    return (
+      <div className="flex flex-wrap justify-center items-center h-[100vh] ">
+        <Link
+          to={'/'}
+          className="absolute mt-56 text-5xl uppercase font-bold underline"
+        >
+          → home ←
+        </Link>{' '}
+        <h1 className="text-center text-7xl font-bold uppercase w-full">
+          Page not found <span className="text-orange-600">(404)</span>
+        </h1>
+      </div>
+    );
   }
   const { title, desc, date, image } = foundItem;
 
@@ -39,96 +53,63 @@ export default function OneCard() {
           <div className="w-full h-auto  my-5 flex justify-between items-center uppercase pt-5 mt-5  text-blue-600 font-bold md:justify-between sm:w-full  sm:justify-between sm:mx-2">
             {currentIndex == 1 ? (
               <div className="arrow_left w-64 flex items-center sm:text-[0.7rem] sm:w-52">
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    className="w-7 h-7   mr-5"
-                    transform="rotate(180)"
-                  >
-                    <path
-                      fill="rgb(255 255 255)"
-                      d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"
-                    />
-                  </svg>
-                </span>{' '}
                 <Link
                   to={`/blogId/${currentIndex - 1}`}
                   className="  hidden"
                   onClick={() => handleButtonClick(-1)}
-                >
-                  Read more
-                </Link>
+                ></Link>
+                <div className="hidden">Read more</div>
               </div>
             ) : (
               <div className="arrow_left w-64 flex items-center sm:text-[0.7rem] sm:w-52">
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    className="w-7 h-7  cursor-pointer mr-5"
-                    transform="rotate(180)"
-                  >
-                    <path
-                      fill="rgb(37 99 235)"
-                      d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"
-                    />
-                  </svg>
-                </span>{' '}
                 <Link
                   to={`/blogId/${currentIndex - 1}`}
                   className="text-blue-600"
                   onClick={() => handleButtonClick(-1)}
                 >
-                  Read more
+                  {' '}
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                      className="w-7 h-7  cursor-pointer mr-5"
+                      transform="rotate(180)"
+                    >
+                      <path
+                        fill="rgb(37 99 235)"
+                        d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"
+                      />
+                    </svg>
+                  </span>{' '}
                 </Link>
+                <div className="">Read more</div>
               </div>
             )}
 
             {/* arrow right */}
             {currentIndex == 15 ? (
-              <div className="arrow_right w-56 flex items-center sm:text-[0.7rem] sm:w-44  sm:text-end">
-                <Link
-                  to={`/blogId/${currentIndex}`}
-                  className="text-blue-600 hidden"
-                  onClick={() => handleButtonClick(1)}
-                >
-                  Read more
-                </Link>
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    className="w-7 h-7 ml-5 hidden"
-                  >
-                    <path
-                      fill="rgb(37 99 235)"
-                      d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"
-                    />
-                  </svg>
-                </span>
-              </div>
+              <div className="arrow_right w-56 items-center sm:text-[0.7rem] sm:w-44  sm:text-end hidden"></div>
             ) : (
               <div className="arrow_right w-56 flex items-center sm:text-[0.7rem] sm:w-44  sm:text-end">
+                Read more
                 <Link
                   to={`/blogId/${currentIndex + 1}`}
                   className="text-blue-600"
                   onClick={() => handleButtonClick(1)}
                 >
-                  Read more
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                      className="w-7 h-7 ml-5 cursor-pointer"
+                    >
+                      <path
+                        fill="rgb(37 99 235)"
+                        d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"
+                      />
+                    </svg>
+                  </span>{' '}
                 </Link>
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    className="w-7 h-7 ml-5 cursor-pointer"
-                  >
-                    <path
-                      fill="rgb(37 99 235)"
-                      d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"
-                    />
-                  </svg>
-                </span>
               </div>
             )}
           </div>
@@ -139,7 +120,7 @@ export default function OneCard() {
             className="img w-1/2 h-full md:h-80 md:w-full"
           />
           <div className="body_title w-2/5 h-80 flex flex-row justify-between flex-wrap items-center ml-16 md:w-full md:ml-0 sm:mx-2 md:flex-row  ">
-            <h1 className="text-7xl w-full font-bold xl:text-5xl lg:text-4xl md:text-5xl  md:w-full">
+            <h1 className="text-5xl w-full font-bold xl:text-5xl lg:text-4xl md:text-5xl  md:w-full">
               {title}
             </h1>
             <div className="w-full md:mt-[70px]">

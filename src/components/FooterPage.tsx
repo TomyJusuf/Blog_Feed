@@ -14,11 +14,11 @@ export default function FooterPage() {
             </ul>
           </div>
         </div>
-        <div className="footer_body_social w-96 h-auto mt-5">
-          <h1 className="text-white font-bold  text-2xl mb-5">
+        <div className="footer_body_social w-96 h-auto mt-5 flex flex-wrap justify-center">
+          <h1 className="text-white font-bold  text-2xl mb-5 md:text-2xl sm:text-lg w-full  text-center">
             Lass und Freunde bleiben:
           </h1>
-          <div className="social_icons flex gap-x-5">
+          <div className="social_icons flex gap-x-5 sm:mt-10">
             <div className="instagram">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ export default function FooterPage() {
             </div>
           </div>
         </div>{' '}
-        <div className="footer_body_address w-96 h-12  mt-16  text-white font-bold mb-5">
+        <div className="footer_body_address w-96 h-12  mt-16  text-white font-bold mb-5  text-center ">
           2024 / Coding-School am Worthersee
         </div>
       </div>
