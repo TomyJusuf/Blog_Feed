@@ -1,12 +1,26 @@
 import FooterPage from './FooterPage';
 import Navbar from './Navbar';
 import { useParams, Link } from 'react-router-dom';
-import { data } from '../data/daten';
+
 import { DataType } from '../types/DataType';
 import { useState } from 'react';
+import { useGetAllInfo } from '../hooks/useGetAllInfo';
 
 export default function OneCard() {
+  const { data } = useGetAllInfo();
   const { blog_id } = useParams<{ blog_id?: string }>();
+  // Check if data is an array
+  const dataArray: DataType[] = []; // New array to store individual objects
+
+  // Check if data is an array
+  if (Array.isArray(data)) {
+    // Push each object from the data array to the new array
+    data.forEach((item) => {
+      dataArray.push(item);
+    });
+  }
+
+  // Now dataArray contains individual objects, you can get its length
 
   // Use 0 as a default if blog_id is undefined
   const n = Number.parseInt(blog_id ?? '0');
@@ -23,7 +37,7 @@ export default function OneCard() {
     }
   };
 
-  const foundItem = data.find((item: DataType) => item.id === n);
+  const foundItem = dataArray.find((item: DataType) => item.id === n);
 
   if (!foundItem) {
     // Handle the case where the item is not found, e.g., redirect to an error page or show a message
@@ -87,7 +101,7 @@ export default function OneCard() {
             )}
 
             {/* arrow right */}
-            {currentIndex == 15 ? (
+            {currentIndex == dataArray.length ? (
               <div className="arrow_right w-56 items-center sm:text-[0.7rem] sm:w-44  sm:text-end hidden"></div>
             ) : (
               <div className="arrow_right w-56 flex items-center sm:text-[0.7rem] sm:w-44  sm:text-end">

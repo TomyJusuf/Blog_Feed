@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <div>
+    <nav>
       <div className="navbar w-full bg-blue-600 text-white py-5 pl-5 flex items-center gap-x-3 ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -18,6 +18,6 @@ export default function Navbar() {
           <Link to={'/'}>CSAW blog</Link>
         </h1>
       </div>
-    </div>
+    </nav>
   );
 }

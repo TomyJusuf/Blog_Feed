@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-
 import { DataType } from '../types/DataType';
+import { useGetAllInfo } from '../hooks/useGetAllInfo';
 
 type DataProps = {
   sendData: DataType[];

@@ -2,15 +2,23 @@ import FooterPage from './components/FooterPage';
 import MainPage from './components/MainPage';
 import Navbar from './components/Navbar';
 
+import { useGetAllInfo } from './hooks/useGetAllInfo';
 import './index.css';
-import { data } from './data/daten';
 
 function App() {
+  const { data, isLoading, isError } = useGetAllInfo();
+
   return (
     <>
-      <Navbar />
-      <MainPage sendData={data} />
-      <FooterPage />
+      {data && (
+        <>
+          <Navbar />
+          <MainPage sendData={data} />
+          <FooterPage />
+        </>
+      )}
+      {isLoading && <p>Loading ...</p>}
+      {isError && <p>Error load</p>}
     </>
   );
 }

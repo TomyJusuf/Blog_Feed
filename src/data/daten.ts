@@ -1,4 +1,4 @@
-export const data = [
+export const dataArray = [
   {
     id: 1,
     title: 'Einführung in maschinelles Lernen',
